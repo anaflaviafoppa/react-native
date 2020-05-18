@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 
-const RestaurantItem = ({ sourceImg, name, review, rating }) => {
+const RestaurantItem = ({ sourceImg, name, review, rating, price }) => {
   return (
     <View>
       <Image style={styles.tinyImage} source={{
@@ -13,6 +13,7 @@ const RestaurantItem = ({ sourceImg, name, review, rating }) => {
         <Text style={styles.subtitleStyle}>
           {review > 1 ? `${review} Reviews` : `${review} Review`}{' '}
         </Text>
+        <Text>{price}</Text>
       </View>
     </View>
   );
@@ -20,7 +21,7 @@ const RestaurantItem = ({ sourceImg, name, review, rating }) => {
 
 const styles = StyleSheet.create({
   titleStyle: {
-    fontSize: 30,
+    fontSize: 20,
   },
   subtitleStyle: {
     fontSize: 15,
