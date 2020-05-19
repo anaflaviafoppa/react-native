@@ -13,7 +13,11 @@ const SearchScreen = () => {
     <View>
       <SearchBar term={term} onTermSubmit={() => serchApi(term)} onTermChange={setTerm} />
       <Text>Search Screen</Text>
-      <Text>We have fount {results.length} results</Text>
+      <Text>
+        {' '}
+        We have fount {results.length}
+        results
+      </Text>
 
       {errorMessage ? <Text>{errorMessage}</Text> : null}
 
