@@ -1,15 +1,14 @@
 import yelp from '../api/yeip';
 import { useEffect, useState, useReducer } from 'react';
 const initialState = {
-  name: '',
-  img: '',
+ 
 };
 
 function reducer(state, action) {
   switch (action.type) {
     case 'new':
       
-      return { ...state, name: action.response.data.name, img: action.response.data.image_url };
+      return { ...action.response.data };
 
     // return { ...state, name: action.response.name, img: action.response.image_url };
     default:

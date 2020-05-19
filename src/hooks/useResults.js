@@ -1,7 +1,7 @@
 import yelp from '../api/yeip';
 import { useEffect, useState } from 'react';
 
-export default () => {
+export default (item) => {
   const [results, setResults] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -22,7 +22,7 @@ export default () => {
   };
 
   useEffect(() => {
-    serchApi('pasta');
+    serchApi(item);
   }, []);
 
   return [serchApi, errorMessage, results];
