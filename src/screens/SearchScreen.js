@@ -16,7 +16,7 @@ const SearchScreen = () => {
     });
   };
   return (
-    <View>
+    <View style={styles.container}>
       <SearchBar term={term} onTermSubmit={() => serchApi(term)} onTermChange={setTerm} />
       <Text>Search Screen</Text>
       <Text>
@@ -33,6 +33,7 @@ const SearchScreen = () => {
         <FlatListRestaurant title="Bit Pricer" arrayChoosen={filterResultsByPrice('€€')} />
 
         <FlatListRestaurant title="Bit Spender" arrayChoosen={filterResultsByPrice('€€€')} />
+        <FlatListRestaurant title="Fancy Restaurant" arrayChoosen={filterResultsByPrice('€€€€')} />
       </ScrollView>
     </View>
   );
@@ -42,6 +43,9 @@ const styles = StyleSheet.create({
   scrollView: {
     marginTop: 30,
     marginBottom: 110,
+  },
+  container: {
+    flex: 1
   },
 });
 

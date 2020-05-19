@@ -3,10 +3,13 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 
 const RestaurantItem = ({ sourceImg, name, review, rating, price }) => {
   return (
-    <View>
-      <Image style={styles.tinyImage} source={{
+    <View style={styles.container}>
+      <Image
+        style={styles.tinyImage}
+        source={{
           uri: sourceImg,
-        }} />
+        }}
+      />
       <Text style={styles.titleStyle}>{name}</Text>
       <View style={styles.viewSubtitleStyle}>
         <Text style={styles.subtitleStyle}>{rating} Stars </Text>
@@ -20,8 +23,13 @@ const RestaurantItem = ({ sourceImg, name, review, rating, price }) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    marginLeft: 15,
+  },
   titleStyle: {
-    fontSize: 20,
+    fontSize: 16,
+    fontWeight: 'bold',
+   
   },
   subtitleStyle: {
     fontSize: 15,
@@ -31,8 +39,10 @@ const styles = StyleSheet.create({
     color: '#D3D3D3',
   },
   tinyImage: {
-    width: 100,
-    height: 128,
+    width: 250,
+    height: 120,
+    borderRadius: 4,
+    marginBottom: 5,
   },
 });
 

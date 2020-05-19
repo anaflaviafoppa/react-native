@@ -4,7 +4,7 @@ import RestaurantItem from './RestaurantItem';
 
 const FlatListRestaurant = ({ arrayChoosen, title }) => {
   return (
-    <View>
+    <View style={styles.container}>
       <Text style={styles.titleStyle}>{title}</Text>
       <FlatList
         style={styles.flatListStyle}
@@ -28,13 +28,17 @@ const FlatListRestaurant = ({ arrayChoosen, title }) => {
 
 const styles = StyleSheet.create({
   flatListStyle: {
-    marginBottom: 30,
     borderBottomWidth: 1,
     borderColor: '#D3D3D3',
   },
   titleStyle: {
     fontSize: 18,
     fontWeight: 'bold',
+    marginLeft: 15,
+    marginBottom: 10,
+  },
+  container: {
+    marginBottom: 15,
   },
 });
 
