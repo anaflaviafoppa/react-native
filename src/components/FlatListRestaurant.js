@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { StyleSheet, FlatList, View, Text } from 'react-native';
+import { StyleSheet, FlatList, View, Text, TouchableOpacity } from 'react-native';
 import RestaurantItem from './RestaurantItem';
+import { withNavigation } from '@react-navigation/compat';
 
-const FlatListRestaurant = ({ arrayChoosen, title }) => {
+const FlatListRestaurant = ({ arrayChoosen, title, navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.titleStyle}>{title}</Text>
@@ -12,13 +13,15 @@ const FlatListRestaurant = ({ arrayChoosen, title }) => {
         showsHorizontalScrollIndicator={false}
         data={arrayChoosen}
         renderItem={({ item }) => (
-          <RestaurantItem
-            sourceImg={item.image_url}
-            review={item.review_count}
-            name={item.name}
-            rating={item.rating}
-            price={item.price}
-          />
+          <TouchableOpacity onPress={() => navigation.navigate('Restaurant')}>
+            <RestaurantItem
+              sourceImg={item.image_url}
+              review={item.review_count}
+              name={item.name}
+              rating={item.rating}
+              price={item.price}
+            />
+          </TouchableOpacity>
         )}
         keyExtractor={(item) => item.id}
       />
@@ -42,4 +45,6 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FlatListRestaurant;
+//Special version of FlatListRestaurant. This is important
+// Now we can use navigation on FlatListRestaurant
+export default withNavigation(FlatListRestaurant);

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, Button } from 'react-native';
 
-const RestaurantItem = ({ sourceImg, name, review, rating, price }) => {
+const RestaurantItem = ({ sourceImg, name, review, rating, price, navigation }) => {
   return (
     <View style={styles.container}>
       <Image
@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
   titleStyle: {
     fontSize: 16,
     fontWeight: 'bold',
-   
   },
   subtitleStyle: {
     fontSize: 15,

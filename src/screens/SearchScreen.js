@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, Button } from 'react-native';
 import SearchBar from '../components/SearchBar';
 import FlatListRestaurant from '../components/FlatListRestaurant';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -16,26 +16,30 @@ const SearchScreen = () => {
     });
   };
   return (
-    <View style={styles.container}>
+    <>
       <SearchBar term={term} onTermSubmit={() => serchApi(term)} onTermChange={setTerm} />
-      <Text>Search Screen</Text>
-      <Text>
-        {' '}
-        We have fount {results.length}
-        results
-      </Text>
-
-      {errorMessage ? <Text>{errorMessage}</Text> : null}
-
       <ScrollView style={styles.scrollView}>
+        <Text>Search Screen</Text>
+        <Text>
+          {' '}
+          We have fount {results.length}
+          results
+        </Text>
+
+        {errorMessage ? <Text>{errorMessage}</Text> : null}
+
         <FlatListRestaurant title="Cost Effective" arrayChoosen={filterResultsByPrice('€')} />
 
         <FlatListRestaurant title="Bit Pricer" arrayChoosen={filterResultsByPrice('€€')} />
 
         <FlatListRestaurant title="Bit Spender" arrayChoosen={filterResultsByPrice('€€€')} />
-        <FlatListRestaurant title="Fancy Restaurant" arrayChoosen={filterResultsByPrice('€€€€')} />
+        <FlatListRestaurant
+          navigation={navigation}
+          title="Fancy Restaurant"
+          arrayChoosen={filterResultsByPrice('€€€€')}
+        />
       </ScrollView>
-    </View>
+    </>
   );
 };
 
@@ -43,9 +47,6 @@ const styles = StyleSheet.create({
   scrollView: {
     marginTop: 30,
     marginBottom: 110,
-  },
-  container: {
-    flex: 1
   },
 });
 
