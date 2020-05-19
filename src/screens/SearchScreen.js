@@ -9,6 +9,12 @@ const SearchScreen = () => {
   const [term, setTerm] = useState('');
   const [serchApi, errorMessage, results] = useResults();
 
+  const filterResultsByPrice = (price) => {
+    //price ==='$ || '$$'...
+    return results.filter((result) => {
+      return result.price === price;
+    });
+  };
   return (
     <View>
       <SearchBar term={term} onTermSubmit={() => serchApi(term)} onTermChange={setTerm} />
@@ -22,11 +28,11 @@ const SearchScreen = () => {
       {errorMessage ? <Text>{errorMessage}</Text> : null}
 
       <ScrollView style={styles.scrollView}>
-        <FlatListRestaurant title="Cost Effective" arrayChoosen={results} />
+        <FlatListRestaurant title="Cost Effective" arrayChoosen={filterResultsByPrice('€')} />
 
-        <FlatListRestaurant title="Bit Pricer" arrayChoosen={results} />
+        <FlatListRestaurant title="Bit Pricer" arrayChoosen={filterResultsByPrice('€€')} />
 
-        <FlatListRestaurant title="Bit Spender" arrayChoosen={results} />
+        <FlatListRestaurant title="Bit Spender" arrayChoosen={filterResultsByPrice('€€€')} />
       </ScrollView>
     </View>
   );
