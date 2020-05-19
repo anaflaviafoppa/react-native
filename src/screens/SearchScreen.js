@@ -33,11 +33,7 @@ const SearchScreen = () => {
         <FlatListRestaurant title="Bit Pricer" arrayChoosen={filterResultsByPrice('€€')} />
 
         <FlatListRestaurant title="Bit Spender" arrayChoosen={filterResultsByPrice('€€€')} />
-        <FlatListRestaurant
-          navigation={navigation}
-          title="Fancy Restaurant"
-          arrayChoosen={filterResultsByPrice('€€€€')}
-        />
+        <FlatListRestaurant title="Fancy Restaurant" arrayChoosen={filterResultsByPrice('€€€€')} />
       </ScrollView>
     </>
   );

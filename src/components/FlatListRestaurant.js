@@ -13,7 +13,8 @@ const FlatListRestaurant = ({ arrayChoosen, title, navigation }) => {
         showsHorizontalScrollIndicator={false}
         data={arrayChoosen}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => navigation.navigate('Restaurant')}>
+          <TouchableOpacity 
+          onPress={() => navigation.navigate('Restaurant', { id: item.id })}>
             <RestaurantItem
               sourceImg={item.image_url}
               review={item.review_count}
