@@ -4,7 +4,7 @@ import { Context as BlogContext } from '../context/BlogContext';
 import { Feather } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const IndexScreen = () => {
+const IndexScreen = ({ navigation }) => {
   const { state, actionBlogPost, deleteBlogPost } = useContext(BlogContext);
 
   return (
@@ -16,9 +16,11 @@ const IndexScreen = () => {
         renderItem={({ item }) => {
           return (
             <View style={styles.row}>
-              <Text style={styles.textSytle}>{item.title}</Text>
-              <TouchableOpacity onPress={()=>deleteBlogPost(item.id)}>
-                <Feather style={styles.iconStyle} name="trash" />
+              <TouchableOpacity onPress={() => navigation.navigate('ShowScreen', { id: item.id })}>
+                <Text style={styles.textSytle}>{item.title}</Text>
+                <TouchableOpacity onPress={() => deleteBlogPost(item.id)}>
+                  <Feather style={styles.iconStyle} name="trash" />
+                </TouchableOpacity>
               </TouchableOpacity>
             </View>
           );

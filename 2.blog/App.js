@@ -4,13 +4,15 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import IndexScreen from './src/screens/IndexScreen';
 import { Provider } from './src/context/BlogContext';
+import showScreen from './src/screens/showScreen';
 
 const Stack = createStackNavigator();
 
 function MyStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={IndexScreen} options={{ title: 'Business Search' }} />
+      <Stack.Screen name="Home" component={IndexScreen} options={{ title: 'Home Page' }} />
+      <Stack.Screen name="ShowScreen" component={showScreen} options={{ title: 'Show Screen' }} />
     </Stack.Navigator>
   );
 }
