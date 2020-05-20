@@ -1,18 +1,19 @@
 import React, { useContext } from 'react';
-import { View, Text, StyleSheet, Image, FlatList } from 'react-native';
-import BlogContext from '../context/BlogContext';
+import { View, Text, StyleSheet, Image, FlatList, Button } from 'react-native';
+import { Context as BlogContext } from '../context/BlogContext';
 
 const IndexScreen = () => {
-  const blogPosts = useContext(BlogContext);
+  const { state, actionBlogPost } = useContext(BlogContext);
 
   return (
     <View>
       <Text>IndexScreen</Text>
-      <FlatList 
-        data={blogPosts}
-        keyExtractor={(item)=> item.title}
-        renderItem={({item})=> {
-          return <Text>{item.title}</Text>
+      <Button title="Add Post" onPress={actionBlogPost} />
+      <FlatList
+        data={state}
+        keyExtractor={(item) => item.title}
+        renderItem={({ item }) => {
+          return <Text>{item.title}</Text>;
         }}
       />
     </View>
