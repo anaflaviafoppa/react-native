@@ -5,7 +5,11 @@ const blogReducer = (state, action) => {
     case 'add_blog_post':
       return [
         ...state,
-        { title: `Blog Post #${state.length + 1}`, id: Math.floor(Math.random() * 9999) },
+        {
+          id: Math.floor(Math.random() * 9999),
+          title: action.payload.title,
+          content: action.payload.content,
+        },
       ];
 
     case 'delete_blog_post':
@@ -16,9 +20,24 @@ const blogReducer = (state, action) => {
 };
 
 const actionBlogPost = (dispatch) => {
-  return () => {
-    dispatch({ type: 'add_blog_post' });
+  return async (title, content, callback) => {
+    dispatch({ type: 'add_blog_post', payload: { title, content } });
+    callback();
   };
+
+
+  //Axios model
+//   return async (title, content, callback) => {
+//     try{
+
+//     await axios.post('hsfiofhdui', title, content);
+//     dispatch({ type: 'add_blog_post', payload: { title, content } });
+//     callback();
+//     }catch (e){
+// throw erros hahdods
+//     }
+  
+//   };
 };
 
 const deleteBlogPost = (dispatch) => {
@@ -27,4 +46,8 @@ const deleteBlogPost = (dispatch) => {
   };
 };
 
-export const { Context, Provider } = createDataContext(blogReducer, { actionBlogPost, deleteBlogPost }, []);
+export const { Context, Provider } = createDataContext(
+  blogReducer,
+  { actionBlogPost, deleteBlogPost },
+  []
+);

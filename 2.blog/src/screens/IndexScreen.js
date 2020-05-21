@@ -5,11 +5,10 @@ import { Feather } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const IndexScreen = ({ navigation }) => {
-  const { state, actionBlogPost, deleteBlogPost } = useContext(BlogContext);
+  const { state, deleteBlogPost } = useContext(BlogContext);
 
   return (
     <View>
-      <Button title="Add Post" onPress={actionBlogPost} />
       <FlatList
         data={state}
         keyExtractor={(item) => item.title}
@@ -28,6 +27,13 @@ const IndexScreen = ({ navigation }) => {
       />
     </View>
   );
+};
+
+IndexScreen.navigationOptions = {
+  headerRight: <Feather name="plus" size={30} />,
+  headerStyle: {
+    backgroundColor: 'orange',
+  },
 };
 
 const styles = StyleSheet.create({
