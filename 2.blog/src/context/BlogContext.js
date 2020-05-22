@@ -14,30 +14,41 @@ const blogReducer = (state, action) => {
 
     case 'delete_blog_post':
       return state.filter((item) => item.id !== action.payload);
+    case 'edit_blog_post':
+      [
+        ...state,
+        {
+          id: action.payload.id,
+          title: action.payload.title,
+          content: action.payload.content,
+        },
+      ];
+
+      return state.filter((item) => item.id !== action.payload.id);
+
     default:
       return state;
   }
 };
 
 const actionBlogPost = (dispatch) => {
-  return async (title, content, callback) => {
+  return (title, content, callback) => {
     dispatch({ type: 'add_blog_post', payload: { title, content } });
     callback();
   };
 
-
   //Axios model
-//   return async (title, content, callback) => {
-//     try{
+  //   return async (title, content, callback) => {
+  //     try{
 
-//     await axios.post('hsfiofhdui', title, content);
-//     dispatch({ type: 'add_blog_post', payload: { title, content } });
-//     callback();
-//     }catch (e){
-// throw erros hahdods
-//     }
-  
-//   };
+  //     await axios.post('hsfiofhdui', title, content);
+  //     dispatch({ type: 'add_blog_post', payload: { title, content } });
+  //     callback();
+  //     }catch (e){
+  // throw erros hahdods
+  //     }
+
+  //   };
 };
 
 const deleteBlogPost = (dispatch) => {
@@ -46,8 +57,15 @@ const deleteBlogPost = (dispatch) => {
   };
 };
 
+const editBlogPost = (dispatch) => {
+  return (title, content, id, callback) => {
+    dispatch({ type: 'edit_blog_post', payload: { title, content, id } });
+    callback();
+  };
+};
+
 export const { Context, Provider } = createDataContext(
   blogReducer,
-  { actionBlogPost, deleteBlogPost },
-  []
+  { actionBlogPost, deleteBlogPost, editBlogPost },
+  [{ title: 'TEST POST', id: 46698, content: 'SOME CONTENT' }]
 );

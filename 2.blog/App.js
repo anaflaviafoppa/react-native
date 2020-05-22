@@ -6,7 +6,8 @@ import IndexScreen from './src/screens/IndexScreen';
 import { Provider } from './src/context/BlogContext';
 import showScreen from './src/screens/showScreen';
 import createScreen from './src/screens/createScreen';
-import { Feather } from '@expo/vector-icons';
+import { Feather, FontAwesome } from '@expo/vector-icons';
+import editScreen from './src/screens/editScreen';
 
 const Stack = createStackNavigator();
 
@@ -24,14 +25,15 @@ function MyStack(props) {
           ),
         })}
       />
-
-      {/* <Stack.Screen name="Home" component={IndexScreen} /> */}
       <Stack.Screen name="ShowScreen" component={showScreen} options={{ title: 'Show Screen' }} />
+
       <Stack.Screen
         name="CreateScreen"
         component={createScreen}
         options={{ title: 'Create Screen' }}
       />
+
+      <Stack.Screen name="EditScreen" component={editScreen} options={{ title: 'Edit Screen' }} />
     </Stack.Navigator>
   );
 }
