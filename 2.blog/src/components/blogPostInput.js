@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
 
-const BlogPostInput = ({ onSubmit }) => {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+const BlogPostInput = ({ onSubmit, initialValues }) => {
+  const [title, setTitle] = useState(initialValues.title);
+  const [content, setContent] = useState(initialValues.content);
 
   return (
     <View>
@@ -22,6 +22,13 @@ const BlogPostInput = ({ onSubmit }) => {
       <Button title="Save Blog Post" onPress={() => onSubmit(title, content)} />
     </View>
   );
+};
+
+BlogPostInput.defaultProps = {
+  initialValues: {
+    title: '',
+    content: '',
+  },
 };
 
 const styles = StyleSheet.create({

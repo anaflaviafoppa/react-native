@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
 import { Context } from '../context/BlogContext';
-//import inputFile from '../components/inputFile';
+import BlogPostInput from '../components/blogPostInput';
 
 const editScreen = ({ route }) => {
   const { state } = useContext(Context);
@@ -15,6 +15,12 @@ const editScreen = ({ route }) => {
   return (
     <View>
       <Text>model</Text>
+      <BlogPostInput
+        initialValues={{ title: blogPost.title, content: blogPost.content }}
+        onSubmit={(title, content) => {
+          editBlogPost(title, content, () => navigation.navigate('Home'));
+        }}
+      />
     </View>
   );
 };
