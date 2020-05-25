@@ -9,11 +9,18 @@ const IndexScreen = ({ navigation }) => {
 
   useEffect(() => {
     getBlogPost();
+
+    const listener = navigation.addListener('focus', () => {
+      getBlogPost();
+    });
+
+    return () => {
+      listener.remove();
+    };
   }, []);
 
   return (
     <View>
-      
       <FlatList
         data={state}
         keyExtractor={(item) => item.title}
