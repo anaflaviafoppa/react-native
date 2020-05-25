@@ -1,4 +1,5 @@
 import createDataContext from './createDataContent';
+import jsonServer from '../api/jsonServer';
 
 const blogReducer = (state, action) => {
   switch (action.type) {
@@ -19,15 +20,27 @@ const blogReducer = (state, action) => {
         return item.id === action.payload.id ? action.payload : item;
       });
 
+    case 'get_blog_post':
+      return action.payload;
     default:
       return state;
   }
 };
 
+const getBlogPost = (dispatch) => {
+  return async () => {
+    const response = await jsonServer.get('/blogposts');
+    //reponse.data === []
+    dispatch({ type: 'get_blog_post', payload: response.data });
+  };
+};
+
 const actionBlogPost = (dispatch) => {
   return (title, content, callback) => {
     dispatch({ type: 'add_blog_post', payload: { title, content } });
-    callback();
+    if (callback) {
+      callback();
+    }
   };
 
   //Axios model
@@ -53,12 +66,14 @@ const deleteBlogPost = (dispatch) => {
 const editBlogPost = (dispatch) => {
   return (title, content, id, callback) => {
     dispatch({ type: 'edit_blog_post', payload: { title, content, id } });
-    callback();
+    if (callback) {
+      callback();
+    }
   };
 };
 
 export const { Context, Provider } = createDataContext(
   blogReducer,
-  { actionBlogPost, deleteBlogPost, editBlogPost },
-  [{ title: 'TEST POST', id: 46698, content: 'SOME CONTENT' }]
+  { actionBlogPost, deleteBlogPost, editBlogPost, getBlogPost },
+  []
 );
