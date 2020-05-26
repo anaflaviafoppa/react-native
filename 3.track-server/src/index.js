@@ -18,6 +18,7 @@ app.use(authRoutes);
 app.use(trackRoutes);
 
 const mongoUri =
+  '';
 mongoose.connect(mongoUri, {
   useNewUrlParser: true,
   useCreateIndex: true,
