@@ -1,8 +1,20 @@
+'use strict';
+require('dotenv').config();
+
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+/**Routers** */
+const authRoutes = require('./routes/authRoutes');
+
 const app = express();
 
-const mongoUri = process.env.MONGODB_INSTANCE;
+app.use(bodyParser.json());
+app.use(authRoutes);
+
+
+const mongoUri =
+  ;
 mongoose.connect(mongoUri, {
   useNewUrlParser: true,
   useCreateIndex: true,
