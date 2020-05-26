@@ -15,6 +15,7 @@ app.use(bodyParser.json());
 app.use(authRoutes);
 
 const mongoUri =
+  '';
 mongoose.connect(mongoUri, {
   useNewUrlParser: true,
   useCreateIndex: true,
