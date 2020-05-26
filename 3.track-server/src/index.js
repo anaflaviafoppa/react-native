@@ -1,9 +1,11 @@
 'use strict';
 require('dotenv').config();
+require('./models/User');
 
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const requireAuth = require('./middleware/requireAuth');
 /**Routers** */
 const authRoutes = require('./routes/authRoutes');
 
@@ -12,9 +14,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(authRoutes);
 
-
 const mongoUri =
-  ;
+  '';
 mongoose.connect(mongoUri, {
   useNewUrlParser: true,
   useCreateIndex: true,
@@ -27,8 +28,8 @@ mongoose.connection.on('error', (error) => {
   console.error('Error connecting to mongo', error);
 });
 
-app.get('/', (req, res) => {
-  res.send('hi there!');
+app.get('/', requireAuth, (req, res) => {
+  res.send(`Your email is ${req.user.email}`);
 });
 
 app.listen(3000, () => {
